@@ -7,13 +7,14 @@ class Preload extends Phaser.Scene {
 
     preload() {
         this.load.tilemapTiledJSON('map', 'assets/crystal_world_map.json');
-        this.load.image('tiles-1', '../../assets/main_lev_build_1.png');
-        this.load.image('tiles-2', '../../assets/main_lev_build_2.png');
+        this.load.image('tiles-1', 'assets/main_lev_build_1.png');
+        this.load.image('tiles-2', 'assets/main_lev_build_2.png');
+        this.load.image('player', '../../assets/assets/player/movements/idle01.png')
     }
 
     create() {
-        this.add.image(0, 0, 'sky').setOrigin(0);
+        this.scene.start('PlayScene');
     }
 }
 
-export default PlayScene;
+export default Preload;
