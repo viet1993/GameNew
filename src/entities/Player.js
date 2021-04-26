@@ -20,6 +20,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     preUpdate() {
+        super.preUpdate(time, delta);
         const { left, right } = this.cursors;
 
         if (left.isDown) {
