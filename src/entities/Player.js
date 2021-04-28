@@ -25,7 +25,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.body.setGravityY(this.gravity);
         this.setCollideWorldBounds(true);
-
+        // chọn điểm trung tâm tấm hình nhân vật ở giữa
+        this.setOrigin(0.5, 1);
 
         initAnimations(this.scene.anims);
     }

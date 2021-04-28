@@ -12,6 +12,7 @@ const SHARED_CONFIG = {
   mapOffset: MAP_WIDTH > WIDTH ? MAP_WIDTH - WIDTH : 0,
   width: WIDTH,
   height: HEIGHT,
+  zoomFactor: 1.25
 }
 // scenes chạy tuần tự từ trái sang phải khi đặt trong 1 array
 const Scenes = [PreloadScene, PlayScene];
@@ -26,7 +27,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      // debug: true
+      debug: true
     }
   },
   scene: initScenes()
