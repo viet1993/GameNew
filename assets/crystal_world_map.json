@@ -64,8 +64,67 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":550.013043034356,
-                 "y":156.761243555056
+                 "x":1344.01304303436,
+                 "y":192.761243555056
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"enemy_spawns",
+         "objects":[
+                {
+                 "height":0,
+                 "id":6,
+                 "name":"Spawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Birdman",
+                 "visible":true,
+                 "width":0,
+                 "x":373,
+                 "y":203
+                }, 
+                {
+                 "height":0,
+                 "id":7,
+                 "name":"Spawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Birdman",
+                 "visible":true,
+                 "width":0,
+                 "x":895,
+                 "y":328
+                }, 
+                {
+                 "height":0,
+                 "id":8,
+                 "name":"Spawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Snake",
+                 "visible":true,
+                 "width":0,
+                 "x":956,
+                 "y":556
+                }, 
+                {
+                 "height":0,
+                 "id":9,
+                 "name":"Spawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Snake",
+                 "visible":true,
+                 "width":0,
+                 "x":493,
+                 "y":459
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -73,8 +132,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":3,
+ "nextlayerid":8,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",

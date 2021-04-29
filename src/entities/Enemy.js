@@ -3,13 +3,13 @@ import initAnimations from './playerAnims';
 
 import collidable from '../mixins/collidable';
 
-class Player extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
-        super(scene, x, y, 'player');
+class Enemy extends Phaser.Physics.Arcade.Sprite {
+    constructor(scene, x, y, key) {
+        super(scene, x, y, key);
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
+        this.keyEnemy = key;
         Object.assign(this, collidable)
 
         this.init();
@@ -18,15 +18,20 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     init() {
         this.gravity = 500;
-        this.playerSpeed = 150;
-        this.cursors = this.scene.input.keyboard.createCursorKeys();
-        this.jumpCount = 0;
-        this.consecutiveJumps = 1;
-
+        this.speed = 150;
+        
         this.body.setGravityY(this.gravity);
-        this.setSize(25, 36);
-        // this.setOffset(0, 0);
+        
+        if(this.keyEnemy == 'birdman') {
+            this.setSize(25, 45);
+            this.setOffset(5, 20);
+        }
+        else {
+            this.setSize(25, 60);
+            this.setOffset(5, 3);
+        }
         this.setCollideWorldBounds(true);
+        this.setImmovable(true);
         // chọn điểm trung tâm tấm hình nhân vật ở giữa
         this.setOrigin(0.5, 1);
 
@@ -34,9 +39,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
     // update event animation
     initEvents() {
-        this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
+        this.scene.events.on(Phaser.Scenes.Events.UPDATE, '', this);
     }
-
     update() {
         const { left, right, space, up } = this.cursors;
         const isSpaceJustDown = Phaser.Input.Keyboard.JustDown(space);
@@ -73,4 +77,4 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 }
 
-export default Player;
+export default Enemy;
