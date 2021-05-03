@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import initAnimations from './playerAnims';
+import initAnimations from './birdmanAnims';
 
 import collidable from '../mixins/collidable';
 
@@ -19,6 +19,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     init() {
         this.gravity = 500;
         this.speed = 150;
+        this.rayGraphics = this.scene.add.graphics({lineStyle: { width :2, color:0xaa00aa }});
         
         this.body.setGravityY(this.gravity);
         
@@ -39,41 +40,27 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
     // update event animation
     initEvents() {
-        this.scene.events.on(Phaser.Scenes.Events.UPDATE, '', this);
+        this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
     }
-    update() {
-        const { left, right, space, up } = this.cursors;
-        const isSpaceJustDown = Phaser.Input.Keyboard.JustDown(space);
-        const onFloor = this.body.onFloor();
 
-        if (left.isDown) {
-            this.setVelocityX(-this.playerSpeed);
-            this.setFlipX(true);
-        }
-        else if (right.isDown) {
-            this.setVelocityX(this.playerSpeed);
-            this.setFlipX(false);
-        }
-        else {
-            this.setVelocityX(0);
-        }
-        // onFloor khi chạm xuống đất mới cho nhảy tiếp
-        if(isSpaceJustDown && (onFloor || this.jumpCount < this.consecutiveJumps)) {
-            this.setVelocityY(-this.playerSpeed * 2);
-            this.jumpCount++;
-        }
+    update(time, delta) {
+        this.setVelocityX(30);
+        const ray = this.raycast(this.body);
 
-        if(onFloor) { 
-            this.jumpCount = 0;
-        }
-        // dont play it again if it's already playing
-        // second value => ignoreIfPlaying
+        this.rayGraphics.clear();
+        this.rayGraphics.strokeLineShape(ray);
+    }
 
-        onFloor ?
-            this.body.velocity.x === 0 ?
-            this.play('idle', true) : this.play('run', true)
-        :
-            this.play('jump', true)
+    raycast(body, raylengh = 30) {
+        const { x, y, width, halfHeight } = body;
+        const line = new Phaser.Geom.Line();
+
+        line.x1 = x + width;
+        line.y1 = y + halfHeight;
+        line.x2 = line.x1 + raylengh;
+        line.y2 = line.y1 + raylengh;
+
+        return line
     }
 }
 
