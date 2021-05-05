@@ -27,6 +27,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
             this.setSize(25, 45);
             this.setOffset(5, 20);
         }
+        
         else {
             this.setSize(25, 60);
             this.setOffset(5, 3);
